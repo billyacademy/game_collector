@@ -1,0 +1,9 @@
+<% if flash.any? %>
+<div>
+  <%= notice %>
+</div>
+<% end %>
+
+<% @board_games.each do |game| %>
+  <%= game.name %>
+<% end %>
