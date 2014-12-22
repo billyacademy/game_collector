@@ -8,7 +8,7 @@ feature "Input a Board Game", %q(
 
   - [ x ] There is a link to 'Sign Up' on the homepage.
   - [ x ] If I fill in my first name, last name, email, password, and password confirmation correctly, I am greeted with a confirmation message that my account has been created.
-  - [ ] If the password and password confirmation fields do not match, I am given an error message.
+  - [ x ] If the password and password confirmation fields do not match, I am given an error message.
   - [ ] If my email already exists in the database, I am given a message that tells me I have already registered.
   - [ ] If my email is not formatted correctly, I am given an error message.
 ) do
@@ -40,4 +40,25 @@ feature "Input a Board Game", %q(
 
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
+
+  scenario "email is already registered" do
+    existing_user = User.create(
+    first_name: "William",
+    last_name: "Mahoney",
+    email: "wm.j.mahoney@gmail.com",
+    password: "supersecret"
+    )
+    visit root_path
+    click_on "Sign Up"
+
+    fill_in "First Name", with: existing_user.first_name
+    fill_in "Last Name", with: existing_user.last_name
+    fill_in "Email", with: existing_user.email
+    fill_in "Password", with: existing_user.password
+    fill_in "Password confirmation", with: existing_user.password
+    click_on "Sign up"
+
+    expect(page).to have_content "Email has already been taken"
+  end
+
 end
