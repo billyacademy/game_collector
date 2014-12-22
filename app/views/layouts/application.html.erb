@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GameCollector</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <title>GoodEats</title>
+  <%= link_to "Home", root_path %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-HELLO
-  <% if flash.any? %>
-  <div>
-    <%= notice %>
-  </div>
-  <% end %>
+
+  <ul>
+    <% if !user_signed_in? %>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <li><%= link_to "Sign In", new_user_session_path %></li>
+    <% else %>
+      <li><%= link_to "Sign Out", destroy_user_session_path %></li>
+    <% end %>
+  <div class="notice devise"><%= notice %></div>
+  <div class="alert devise"><%= alert %></div>
 
 <%= yield %>
 
