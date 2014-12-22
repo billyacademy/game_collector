@@ -23,7 +23,7 @@ feature "Input a Board Game", %q(
   fill_in "Password confirmation", with: "supersecret"
   click_on "Sign up"
 
-  expect(page).to have_message "Welcome! Your account has been created."
+  expect(page).to have_content "Welcome! You have signed up successfully."
 
   end
 end

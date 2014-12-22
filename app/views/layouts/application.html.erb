@@ -9,11 +9,12 @@
 </head>
 <body>
 
-hello hello
+  <div>
+    <%= link_to "Sign Up", new_user_registration_path %>
+  </div>
 
-<div>
-  <%= link_to "Sign up", "#{}" %>
-</div>
+  <div class="notice devise"><%= notice %></div>
+  <div class="alert devise"><%= alert %></div>
 
 <%= yield %>
 
