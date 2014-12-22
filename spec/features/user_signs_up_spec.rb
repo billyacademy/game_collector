@@ -6,8 +6,8 @@ feature "Input a Board Game", %q(
   So that I can use all of its awesome features.
   Acceptance Criteria
 
-  - [ ] There is a link to 'Sign Up' on the homepage.
-  - [ ] If I fill in my first name, last name, email, password, and password confirmation correctly, I am greeted with a confirmation message that my account has been created.
+  - [ x ] There is a link to 'Sign Up' on the homepage.
+  - [ x ] If I fill in my first name, last name, email, password, and password confirmation correctly, I am greeted with a confirmation message that my account has been created.
   - [ ] If the password and password confirmation fields do not match, I am given an error message.
   - [ ] If my email already exists in the database, I am given a message that tells me I have already registered.
   - [ ] If my email is not formatted correctly, I am given an error message.
@@ -25,5 +25,19 @@ feature "Input a Board Game", %q(
 
   expect(page).to have_content "Welcome! You have signed up successfully."
 
+  end
+
+  scenario "user provides non-matching passwords" do
+    visit root_path
+    click_on "Sign Up"
+
+    fill_in "First Name", with: "William"
+    fill_in "Last Name", with: "Mahoney"
+    fill_in "Email", with: "wm.j.mahoney@gmail.com"
+    fill_in "Password", with: "supersecrets"
+    fill_in "Password confirmation", with: "supersecret"
+    click_on "Sign up"
+
+    expect(page).to have_content "Password confirmation doesn't match Password"
   end
 end
