@@ -1,6 +1,6 @@
 class BoardGamesController < ApplicationController
   protect_from_forgery with: :exception
-
+  before_action :authenticate_user!, except: :index
   def index
     @board_games = BoardGame.all.limit(10)
   end
