@@ -1,4 +1,4 @@
-class BoardGamesController < ActionController::Base
+class BoardGamesController < ApplicationController
   protect_from_forgery with: :exception
 
   def index

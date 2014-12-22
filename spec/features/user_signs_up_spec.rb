@@ -13,7 +13,7 @@ feature "Input a Board Game", %q(
   - [ ] If my email is not formatted correctly, I am given an error message.
 ) do
   scenario "user provides valid information" do
-  visit_root_path
+  visit root_path
   click_on "Sign Up"
 
   fill_in "First Name", with: "William"
