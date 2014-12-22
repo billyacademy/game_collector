@@ -24,7 +24,8 @@ feature "Input a Board Game", %q(
   click_on "Sign up"
 
   expect(page).to have_content "Welcome! You have signed up successfully."
-
+  expect(page).to_not have_link "Sign Up"
+  expect(page).to have_link "Sign Out"
   end
 
   scenario "user provides non-matching passwords" do
